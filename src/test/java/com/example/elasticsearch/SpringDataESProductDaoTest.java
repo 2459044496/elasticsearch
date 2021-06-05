@@ -21,18 +21,38 @@ public class SpringDataESProductDaoTest {
 
     @Autowired
     private ProductDao productDao;
+
+    @Autowired
+    ElasticsearchRestTemplate template;
+
+    /**
+     * 验证生产问题，更换es服务器地址后，忘记更改es驱动，生产为5.x，代码7.x
+     * {"error":{"root_cause":[{"type":"invalid_type_name_exception",
+     * "reason":"Document mapping type name can't start with '_',
+     * found: [_doc]"}],"type":"invalid_type_name_exception",
+     * "reason":"Document mapping type name can't start with '_',
+     * found: [_doc]"},"status":400}
+     */
+    @Test
+    public void testVersion() {
+        System.out.println(template.exists("123", Product.class));
+    }
     /**
      * 新增
      */
     @Test
     public void save(){
-        Product product = new Product();
-        product.setId(2L);
-        product.setTitle("华为手机");
-        product.setCategory("手机");
-        product.setPrice(2999.0);
-        product.setImages("http://www.atguigu/hw.jpg");
-        productDao.save(product);
+        try {
+            Product product = new Product();
+            product.setId(2L);
+            product.setTitle("华为手机");
+            product.setCategory("手机");
+            product.setPrice(2999.0);
+            productDao.save(product);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("error"+e.getMessage());
+        }
     }
     //修改
     @Test
