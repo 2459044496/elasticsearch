@@ -1,0 +1,18 @@
+#集群配置
+spring:
+  data:
+      repositories:
+        enabled:true
+  elasticsearch:
+    rest:
+      #username:
+      #password:
+      uris: 192.168.88.134:9200, 192.168.88.130:9200
+
+# es 服务地址
+#elasticsearch.host=192.168.88.134
+# es 服务端口
+#elasticsearch.port=9200
+# 配置日志级别,开启 debug 日志
+logging:
+  level: com.atguigu.es=debug

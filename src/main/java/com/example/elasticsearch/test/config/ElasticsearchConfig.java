@@ -1,3 +1,4 @@
+/*
 package com.example.elasticsearch.test.config;
 
 import lombok.Data;
@@ -24,3 +25,4 @@ public class ElasticsearchConfig extends AbstractElasticsearchConfiguration {
         return restHighLevelClient;
     }
 }
+*/
